@@ -1,5 +1,6 @@
 from neopixel import *
 
+
 class Drawing():
 	'''
 	The drawing class.
