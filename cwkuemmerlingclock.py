@@ -9,7 +9,5 @@ Februar 2017
 '''
 from clock import Clock
 
-
 clock = Clock()
-clock.run()
-	
+clock.runMode(0)
