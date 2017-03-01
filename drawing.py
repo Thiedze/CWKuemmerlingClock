@@ -1,14 +1,14 @@
 from neopixel import *
 
+from constants import Constants
 
 class Drawing():
 	'''
 	The drawing class.
 	'''
 	
-	def __init__(self, leds):
-		self.leds = leds
-		self.stripe = Adafruit_NeoPixel(leds, 18, 800000, 5, False, 255)
+	def __init__(self):
+		self.stripe = Adafruit_NeoPixel(Constants.leds, 18, 800000, 5, False, 255)
 		self.stripe.begin()
 		self.emptyPlaceColor = [0, 0, 0]
 
@@ -17,7 +17,7 @@ class Drawing():
 		Draw the clock plan. (Send to the stripe)		
 		:param plan: The clock plan to draw.
 		'''
-		for led in range(self.leds):
+		for led in range(Constants.leds):
 			if(plan[led] == None):
 				self.stripe.setPixelColorRGB(led, self.emptyPlaceColor[0], self.emptyPlaceColor[1], self.emptyPlaceColor[2])
 			else:

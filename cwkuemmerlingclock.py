@@ -10,4 +10,4 @@ Februar 2017
 from clock import Clock
 
 clock = Clock()
-clock.runMode(0)
+clock.nextMode()
