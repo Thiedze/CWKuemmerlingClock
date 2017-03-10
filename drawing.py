@@ -12,6 +12,11 @@ class Drawing():
 		self.stripe.begin()
 		self.emptyPlaceColor = [0, 0, 0]
 
+	def clear(self):
+		for led in range(Constants.leds):
+			self.stripe.setPixelColorRGB(led, 0, 0, 0)
+		self.stripe.show()
+
 	def clockPlan(self, plan):
 		'''
 		Draw the clock plan. (Send to the stripe)		

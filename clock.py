@@ -28,7 +28,23 @@ class Clock():
 		self.waitEffect = WaitEffect(self.drawing, self.nextMode)
 		self.clockEffect = ClockEffect(self.drawing, self.nextMode)
 		
-		self.mode = 0
+		self.mode = 3
+
+	def clear(self):
+		self.drawing.clear()
+
+	def setColorSeconds(self, rgbColor):
+		self.clockEffect.setColorSeconds(rgbColor)
+
+	def setColorMinutes(self, rgbColor):
+		self.clockEffect.setColorMinutes(rgbColor)
+
+	def setColorHours(self, rgbColor):
+		self.clockEffect.setColorHours(rgbColor)
+
+	def setMode(self, mode):
+		self.mode = mode
+		self.nextMode()
 
 	'''
 	Get a new plan

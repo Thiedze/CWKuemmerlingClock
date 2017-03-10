@@ -12,6 +12,18 @@ class ClockEffect(Effect):
 
 	def __init__(self, drawing, nextModeCallback):
 		Effect.__init__(self, drawing, nextModeCallback)
+		self.colorSeconds = [0, 0, 50]
+		self.colorMinutes = [50, 0, 0]
+		self.colorHours = [0, 50, 0]
+
+	def setColorSeconds(self, rgbColor):
+		self.colorSeconds = rgbColor
+
+	def setColorMinutes(self, rgbColor):
+		self.colorMinutes = rgbColor
+
+	def setColorHours(self, rgbColor):
+		self.colorHours = rgbColor
 
 	'''
 	Reset the clock plan. 
@@ -25,7 +37,7 @@ class ClockEffect(Effect):
 	'''
 	def addSecondObjects(self, currentTime, plan):
 		for index in range(0, Constants.ledsPerGlass):
-			plan[(currentTime.second * Constants.ledsPerGlass) + index] = SecondObject()
+			plan[(currentTime.second * Constants.ledsPerGlass) + index] = SecondObject(self.colorSeconds)
 
 	'''
 	Add minute objects depending on the current time. 
@@ -33,7 +45,7 @@ class ClockEffect(Effect):
 	def addtMinuteObjects(self, currentTime, plan):
 		for minute in range(0, currentTime.minute):
 			for index in range(0, Constants.ledsPerGlass):
-				plan[(minute * Constants.ledsPerGlass) + index] = MinuteObject()
+				plan[(minute * Constants.ledsPerGlass) + index] = MinuteObject(self.colorMinutes)
 
 	'''
 	Add hour objects depending on the current time. 
@@ -41,9 +53,9 @@ class ClockEffect(Effect):
 	def addHourObjects(self, currentTime, plan):
 		for index in range(0, Constants.ledsPerHour):
 			if currentTime.hour >= 12:
-				plan[Constants.startHourPositions + ((currentTime.hour - 12) * Constants.ledsPerHour) + index] = HourObject()
+				plan[Constants.startHourPositions + ((currentTime.hour - 12) * Constants.ledsPerHour) + index] = HourObject(self.colorHours)
 			else:
-				plan[Constants.startHourPositions + (currentTime.hour * Constants.ledsPerHour) + index] = HourObject()
+				plan[Constants.startHourPositions + (currentTime.hour * Constants.ledsPerHour) + index] = HourObject(self.colorHours)
 
 	'''
 	Displayed the normal time. 

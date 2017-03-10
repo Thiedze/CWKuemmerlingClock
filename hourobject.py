@@ -3,6 +3,9 @@ from clockobject import ClockObject
 
 class HourObject(ClockObject):
 
-	def __init__(self):
+	def __init__(self, rgbColor):
 		ClockObject.__init__(self)
-		self.color = [0, 255, 0]
+		if rgbColor == None:
+			self.color = [0, 255, 0]
+		else:
+			self.color = rgbColor
