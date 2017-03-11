@@ -7,6 +7,7 @@ from constants import Constants
 from rainboweffect import RainbowEffect
 from runninglighteffect import RunningLightEfect
 from waiteffect import WaitEffect
+from appeareffect import AppearEffect
 from clockeffect import ClockEffect
 
 class Clock():
@@ -26,9 +27,10 @@ class Clock():
 		self.rainbowEffect = RainbowEffect(self.drawing, self.nextMode)
 		self.runningLightEffect = RunningLightEfect(self.drawing, self.nextMode)
 		self.waitEffect = WaitEffect(self.drawing, self.nextMode)
+		self.appearEffect = AppearEffect(self.drawing, self.nextMode)
 		self.clockEffect = ClockEffect(self.drawing, self.nextMode)
 		
-		self.mode = 3
+		self.mode = 0
 
 	def clear(self):
 		self.drawing.clear()
@@ -72,7 +74,10 @@ class Clock():
 		elif(self.mode == 1):
 			self.startTimer(0.01, self.waitEffect.show)
 		elif(self.mode == 2):
-			self.startTimer(0.10, self.rainbowEffect.show)
+			self.startTimer(0.025, self.appearEffect.show)
 		elif(self.mode == 3):
+			self.startTimer(0.10, self.rainbowEffect.show)
+		elif(self.mode == 4):
 			self.startTimer(0.25, self.clockEffect.show)
+		
 		self.mode += 1
