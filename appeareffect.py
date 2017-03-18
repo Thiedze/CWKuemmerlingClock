@@ -14,6 +14,7 @@ class AppearEffect(Effect):
 		self.rounds = 6
 		self.counter = 0
 		self.steps = 6
+		self.maxColorValue = 255
 		
 	def getColorIndexForRound(self):
 		if self.rounds == 6 or self.rounds == 5:
@@ -27,8 +28,8 @@ class AppearEffect(Effect):
 		index = self.getColorIndexForRound()
 	
 		if self.rounds % 2 == 0:
-			if color[index] + self.steps >= 255:
-				color[index] = 255
+			if color[index] + self.steps >= self.maxColorValue:
+				color[index] = self.maxColorValue
 				return color
 			else:
 				color[index] = color[index] + self.steps
@@ -46,7 +47,7 @@ class AppearEffect(Effect):
 			self.resetState()
 			self.nextModeCallback()
 			
-		if(self.counter >=  ((Constants.glasses * Constants.ledsPerGlass) + (255 / self.steps))):
+		if(self.counter >=  ((Constants.glasses * Constants.ledsPerGlass) + (self.maxColorValue / self.steps))):
 			self.counter = 0
 			self.rounds -= 1
 
@@ -54,7 +55,7 @@ class AppearEffect(Effect):
 	Show wait effect
 	'''
 	def show(self, plan):
-		self.counter += 2
+		self.counter += Constants.ledsPerGlass
 		clockObject = ClockObject()
 		clockObject.color = [0,0,0]
 		
