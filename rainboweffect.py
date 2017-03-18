@@ -7,8 +7,11 @@ class RainbowEffect(Effect):
 		
 	def __init__(self, drawing, nextModeCallback):
 		Effect.__init__(self, drawing, nextModeCallback)
-		self.counter = 0
 		self.rgbMaxValue = 255
+		self.resetState()
+		
+	def resetState(self):
+		self.counter = 0
 	
 	'''
 	Get the color for the position
@@ -51,4 +54,5 @@ class RainbowEffect(Effect):
 		self.counter += 1
 		
 		if(self.counter >= Constants.glasses):
+			self.resetState()
 			self.nextModeCallback()

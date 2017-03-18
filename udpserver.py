@@ -11,10 +11,11 @@ class UdpServer():
 	def run(self):
 		while True:
 			data, addr = self.socket.recvfrom(1024)
+			print data
 			split = data.split(":")
 			if len(split) == 2:
 				if split[0] == "mode":
-					clock.setMode(int(split[1]))
+					self.clock.setMode(int(split[1]))
 				else:
 					rgbColor = split[1].split(",")
 					rgbColor = map(int, rgbColor)

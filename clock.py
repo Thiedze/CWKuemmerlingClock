@@ -77,7 +77,7 @@ class Clock():
 			self.startTimer(0.025, self.appearEffect.show)
 		elif(self.mode == 3):
 			self.startTimer(0.10, self.rainbowEffect.show)
-		elif(self.mode == 4):
+		else:
 			self.startTimer(0.25, self.clockEffect.show)
 		
 		self.mode += 1

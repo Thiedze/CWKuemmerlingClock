@@ -8,6 +8,9 @@ class WaitEffect(Effect):
 	
 	def __init__(self, drawing, nextModeCallback):
 		Effect.__init__(self, drawing, nextModeCallback)
+		self.resetState()
+		
+	def resetState(self):
 		self.rounds = 6
 		self.counter = 0
 		
@@ -23,6 +26,7 @@ class WaitEffect(Effect):
 
 	def checkState(self):
 		if(self.rounds <= 1 and self.counter >= Constants.glasses):
+			self.resetState()
 			self.nextModeCallback()
 		
 		if(self.counter >= Constants.glasses):

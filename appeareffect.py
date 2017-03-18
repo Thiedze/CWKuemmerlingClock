@@ -8,54 +8,45 @@ class AppearEffect(Effect):
 	
 	def __init__(self, drawing, nextModeCallback):
 		Effect.__init__(self, drawing, nextModeCallback)
+		self.resetState()
+	
+	def resetState(self):
 		self.rounds = 6
 		self.counter = 0
 		self.steps = 6
 		
+	def getColorIndexForRound(self):
+		if self.rounds == 6 or self.rounds == 5:
+			return 1
+		elif self.rounds == 4 or self.rounds == 3:
+			return 0
+		elif self.rounds == 2 or self.rounds == 1:
+			return 2
+		
 	def getColorForRounds(self, color):
-		if(self.rounds == 6):
-			if color[1] + self.steps >= 255:
-				return [0, 255, 0]
-			else:
-				color[1] = color[1] + self.steps
+		index = self.getColorIndexForRound()
+	
+		if self.rounds % 2 == 0:
+			if color[index] + self.steps >= 255:
+				color[index] = 255
 				return color
-		elif(self.rounds == 4):
-			if color[0] + self.steps >= 255:
-				return [255, 0, 0]
 			else:
-				color[0] = color[0] + self.steps
-				return color
-		elif(self.rounds == 2):
-			if color[2] + self.steps >= 255:
-				return [0, 0, 255]
-			else:
-				color[2] = color[2] + self.steps
+				color[index] = color[index] + self.steps
 				return color
 		else:
-			if(self.rounds == 5):
-				if color[1] - self.steps < 0:
-					return [0, 0, 0]
-				else:
-					color[1] = color[1] - self.steps
-					return color
-			elif(self.rounds == 3):
-				if color[0] - self.steps < 0:
-					return [0, 0, 0]
-				else:
-					color[0] = color[0] - self.steps
-					return color
-			elif(self.rounds == 1):
-				if color[2] - self.steps < 0:
-					return [0, 0, 0]
-				else:
-					color[2] = color[2] - self.steps
-					return color
+			if color[index] - self.steps < 0:
+				color[index] = 0
+				return color
+			else:
+				color[index] = color[index] - self.steps
+				return color
 
 	def checkState(self):
-		if(self.rounds <= 1 and self.counter >= (Constants.glasses * Constants.ledsPerGlass) + self.steps * 2):
+		if(self.rounds <= 1 and self.counter >= (Constants.glasses * Constants.ledsPerGlass)):
+			self.resetState()
 			self.nextModeCallback()
 			
-		if(self.counter >= (Constants.glasses * Constants.ledsPerGlass) + self.steps * 2):
+		if(self.counter >=  ((Constants.glasses * Constants.ledsPerGlass) + (255 / self.steps))):
 			self.counter = 0
 			self.rounds -= 1
 
@@ -64,11 +55,16 @@ class AppearEffect(Effect):
 	'''
 	def show(self, plan):
 		self.counter += 2
-		
 		clockObject = ClockObject()
 		clockObject.color = [0,0,0]
 		
-		for index in range(0, self.counter):
+		maxIndex = 0
+		if self.counter > (Constants.glasses * Constants.ledsPerGlass):
+			maxIndex = Constants.glasses * Constants.ledsPerGlass
+		else:
+			maxIndex = self.counter
+		
+		for index in range(0, maxIndex):
 			planObject = plan[index]
 			if planObject == None:
 				plan[index] = clockObject

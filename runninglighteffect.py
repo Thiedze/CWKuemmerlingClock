@@ -7,6 +7,9 @@ class RunningLightEfect(Effect):
 	
 	def __init__(self, drawing, nextModeCallback):
 		Effect.__init__(self, drawing, nextModeCallback)
+		self.resetState()
+		
+	def resetState(self):
 		self.counter = 0
 		self.state = 0
 		
@@ -26,6 +29,7 @@ class RunningLightEfect(Effect):
 			self.counter = 0
 			self.state += 1
 		elif(self.state == 2 and self.counter >= Constants.glasses):
+			self.resetState()
 			self.nextModeCallback()
 
 	'''
