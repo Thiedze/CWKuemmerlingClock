@@ -27,17 +27,29 @@ class CycleEffect(Effect):
 	
 	If the next round reached set a random color to the left and right cycle. 
 	'''
-	def checkState(self):
+	def checkState(self, plan):
 		if self.rounds <= 1 and self.counter >= (Constants.glasses * Constants.ledsPerGlass):
+			self.drawing.clockPlan(self.getEmptyPlan())
 			self.resetState()
 			self.nextModeCallback()
 
 		if self.counter >=  Constants.glasses * Constants.ledsPerGlass:
 			self.leftDirectionColor = [random.randint(0,255), random.randint(0,255), random.randint(0,255)]
 			self.rightDirectionColor = [random.randint(0,255), random.randint(0,255), random.randint(0,255)]
+			self.changeDirection(plan)
 			self.counter = 0
 			self.rounds -= 1
 
+	def changeDirection(self, plan):
+		for led in range(0, Constants.glasses * Constants.ledsPerGlass):
+			clockObject = plan[led]
+			if clockObject != None:
+				if clockObject.direction == 1:
+					clockObject.direction = 0
+					clockObject.pos = clockObject.pos - 3
+				elif clockObject.direction == 0:
+					clockObject.direction = 1
+					clockObject.pos = clockObject.pos + 3
 	'''
 	Return an emopty plan.
 	'''
@@ -69,13 +81,19 @@ class CycleEffect(Effect):
 				clockObject.pos = led
 				clockObject.color = self.leftDirectionColor
 				clockObject.direction = 1
-				plan[clockObject.pos] = clockObject		
+				plan[clockObject.pos] = clockObject
+			'''if led == 8:
+				clockObject = ClockObject()
+				clockObject.pos = led + 1
+				clockObject.color = self.rightDirectionColor
+				clockObject.direction = 0
+				plan[clockObject.pos] = clockObject'''	
 		
 	'''
 	Show cylce effect
 	'''
 	def show(self, plan):
-		self.counter += 5
+		self.counter += 3
 		
 		if self.isPlanInit == False :
 			self.initPlan(plan)
@@ -94,7 +112,6 @@ class CycleEffect(Effect):
 						clockObject.pos = clockObject.pos - Constants.glasses * Constants.ledsPerGlass
 				elif clockObject.direction == 1:
 					clockObject.color = self.leftDirectionColor
-				
 					if self.counter % 2 == 0:
 						clockObject.pos = clockObject.pos - 1
 					else:
@@ -110,4 +127,4 @@ class CycleEffect(Effect):
 		plan = tempPlan
 			
 		self.drawing.clockPlan(plan)
-		self.checkState()
+		self.checkState(plan)
