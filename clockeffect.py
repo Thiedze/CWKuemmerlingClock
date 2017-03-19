@@ -1,13 +1,14 @@
 from effect import Effect
-
 from datetime import datetime
-
 from constants import Constants
 
 from hourobject import HourObject
 from minuteobject import MinuteObject
 from secondobject import SecondObject
 
+'''
+The clock effect class.
+'''
 class ClockEffect(Effect):
 
 	def __init__(self, drawing, nextModeCallback):
@@ -16,12 +17,21 @@ class ClockEffect(Effect):
 		self.colorMinutes = [50, 0, 0]
 		self.colorHours = [0, 50, 0]
 
+	'''
+	Set the color of the seconds.
+	'''
 	def setColorSeconds(self, rgbColor):
 		self.colorSeconds = rgbColor
 
+	'''
+	Set the color of the minutes.
+	'''
 	def setColorMinutes(self, rgbColor):
 		self.colorMinutes = rgbColor
 
+	'''
+	Set the color of the hours.
+	'''
 	def setColorHours(self, rgbColor):
 		self.colorHours = rgbColor
 

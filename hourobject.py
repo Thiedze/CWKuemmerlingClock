@@ -1,6 +1,8 @@
 from clockobject import ClockObject
 
-
+'''
+The hour class. 
+'''
 class HourObject(ClockObject):
 
 	def __init__(self, rgbColor):

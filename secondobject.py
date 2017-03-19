@@ -1,6 +1,8 @@
 from clockobject import ClockObject
 
-
+'''
+The second class.
+'''
 class SecondObject(ClockObject):
 
 	def __init__(self, rgbColor):

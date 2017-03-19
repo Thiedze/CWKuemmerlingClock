@@ -1,15 +1,20 @@
 from effect import Effect
 from clockobject import ClockObject
-
 from constants import Constants
 
+'''
+The rainbow efect class.
+'''
 class RainbowEffect(Effect):
 		
 	def __init__(self, drawing, nextModeCallback):
 		Effect.__init__(self, drawing, nextModeCallback)
 		self.rgbMaxValue = 255
 		self.resetState()
-		
+	
+	'''
+	Reset the class attributes. 
+	'''
 	def resetState(self):
 		self.counter = 0
 	

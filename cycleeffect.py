@@ -1,17 +1,20 @@
 from effect import Effect
-
 from constants import Constants
-
 from clockobject import ClockObject
-
 import random
 
+'''
+The cycle effect class.
+'''
 class CycleEffect(Effect):
 
 	def __init__(self, drawing, nextModeCallback):
 		Effect.__init__(self, drawing, nextModeCallback)
 		self.resetState()
-		
+	
+	'''
+	Reset the class attributes.
+	'''
 	def resetState(self):
 		self.leftDirectionColor = [0,255,0]
 		self.rightDirectionColor = [255,0,0]
@@ -19,6 +22,11 @@ class CycleEffect(Effect):
 		self.isPlanInit = False
 		self.counter = -1
 
+	'''
+	Check the state. Call nextModeCallback if last round reached and counter is greater glasses * leds per glass.
+	
+	If the next round reached set a random color to the left and right cycle. 
+	'''
 	def checkState(self):
 		if self.rounds <= 1 and self.counter >= (Constants.glasses * Constants.ledsPerGlass):
 			self.resetState()
@@ -30,6 +38,9 @@ class CycleEffect(Effect):
 			self.counter = 0
 			self.rounds -= 1
 
+	'''
+	Return an emopty plan.
+	'''
 	def getEmptyPlan(self):
 		plan = []
 		
@@ -38,6 +49,11 @@ class CycleEffect(Effect):
 			
 		return plan
 		
+	'''
+	Init the plan. This should be called onced at the start of the effect. 
+	
+	Set the start objects. From this point we only move the objects. 
+	'''
 	def initPlan(self, plan):
 		self.isPlanInit = True
 		for led in range(0, Constants.glasses * Constants.ledsPerGlass):

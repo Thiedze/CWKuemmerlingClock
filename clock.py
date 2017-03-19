@@ -11,6 +11,9 @@ from appeareffect import AppearEffect
 from cycleeffect import CycleEffect
 from clockeffect import ClockEffect
 
+'''
+The clock class. This is the main class to control the effects. 
+'''
 class Clock():
 
 	'''
@@ -34,18 +37,33 @@ class Clock():
 		
 		self.mode = 0
 
+	'''
+	Draw a clear plan.
+	'''
 	def clear(self):
 		self.drawing.clear()
 
+	'''
+	Set the color of the seconds.
+	'''
 	def setColorSeconds(self, rgbColor):
 		self.clockEffect.setColorSeconds(rgbColor)
 
+	'''
+	Set the color of the minutes.
+	'''
 	def setColorMinutes(self, rgbColor):
 		self.clockEffect.setColorMinutes(rgbColor)
 
+	'''
+	Set the color of the hours.
+	'''	
 	def setColorHours(self, rgbColor):
 		self.clockEffect.setColorHours(rgbColor)
 
+	'''
+	Set the mode and show it. 
+	'''
 	def setMode(self, mode):
 		self.mode = mode
 		self.nextMode()
@@ -82,8 +100,6 @@ class Clock():
 		elif(self.mode == 4):
 			self.startTimer(0.05, self.cycleEffect.show)
 		else:
-			self.startTimer(0.25, self.clockEffect.show)
-		''''''
-		
+			self.startTimer(0.25, self.clockEffect.show)	
 		
 		self.mode += 1

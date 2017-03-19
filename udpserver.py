@@ -1,5 +1,8 @@
 import socket
 
+'''
+The udo server class.
+'''
 class UdpServer():
 
 	def __init__(self, clock):
@@ -8,6 +11,9 @@ class UdpServer():
 		self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self.socket.bind(("", 5050))
 
+	'''
+	Run the udp server in an endless loop. 
+	'''
 	def run(self):
 		while True:
 			data, addr = self.socket.recvfrom(1024)

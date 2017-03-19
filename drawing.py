@@ -1,7 +1,9 @@
 from neopixel import *
-
 from constants import Constants
 
+'''
+The drawing class. Thsi class "draw" the plan and show it. 
+'''
 class Drawing():
 	'''
 	The drawing class.
@@ -12,6 +14,9 @@ class Drawing():
 		self.stripe.begin()
 		self.emptyPlaceColor = [0, 0, 0]
 
+	'''
+	Clear the plan and draw it. 
+	'''
 	def clear(self):
 		for led in range(Constants.leds):
 			self.stripe.setPixelColorRGB(led, 0, 0, 0)

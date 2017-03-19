@@ -14,12 +14,16 @@ import time
 
 from udpserver import UdpServer
 
+'''
+Start the drawing.
+'''
 clock = Clock()
 clock.clear()
-
 time.sleep(2)
-
 clock.nextMode()
 
+'''
+Start the upd server.
+'''
 udpServer = UdpServer(clock)
 udpServer.run()
