@@ -36,6 +36,7 @@ class Clock():
 		self.clockEffect = ClockEffect(self.drawing, self.nextMode)
 		
 		self.mode = 0
+		self.showSingleEffect = False
 
 	'''
 	Draw a clear plan.
@@ -88,7 +89,13 @@ class Clock():
 	'''
 	Run mode
 	'''
-	def nextMode(self):
+	def nextMode(self, mode = None, showSingleEffect = None):
+		if mode != None:
+			self.mode = mode
+		
+		if showSingleEffect != None:
+			self.showSingleEffect = showSingleEffect
+	
 		if(self.mode == 0):
 			self.startTimer(0.02, self.runningLightEffect.show)
 		elif(self.mode == 1):
@@ -102,4 +109,7 @@ class Clock():
 		else:
 			self.startTimer(0.25, self.clockEffect.show)	
 		
-		self.mode += 1
+		if self.showSingleEffect == False:
+			self.mode += 1
+		else:
+			self.mode = 99

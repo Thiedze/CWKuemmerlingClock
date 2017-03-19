@@ -6,6 +6,7 @@ from hourobject import HourObject
 from minuteobject import MinuteObject
 from secondobject import SecondObject
 
+import random
 '''
 The clock effect class.
 '''
@@ -46,8 +47,11 @@ class ClockEffect(Effect):
 	Add second objects depending on the current time. 
 	'''
 	def addSecondObjects(self, currentTime, plan):
-		for index in range(0, Constants.ledsPerGlass):
-			plan[(currentTime.second * Constants.ledsPerGlass) + index] = SecondObject(self.colorSeconds)
+		if currentTime.second == 0:
+			self.nextModeCallback(random.randint(0,4), True)
+		else:
+			for index in range(0, Constants.ledsPerGlass):
+				plan[(currentTime.second * Constants.ledsPerGlass) + index] = SecondObject(self.colorSeconds)
 
 	'''
 	Add minute objects depending on the current time. 
