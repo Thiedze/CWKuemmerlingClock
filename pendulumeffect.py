@@ -17,7 +17,7 @@ class PendulumEffect(Effect):
 	Reset the class attributes.
 	'''
 	def resetState(self):
-		self.color = [random.randint(0,255), random.randint(0,255), random.randint(0,255)]
+		self.color = [random.randint(0,100), random.randint(0,255), random.randint(100,255)]
 		self.rounds = 60
 		self.isPlanInit = False
 		self.counter = 0
@@ -29,7 +29,7 @@ class PendulumEffect(Effect):
 	Check the state. If rounds <= 25 call nextModeCallback.
 	'''
 	def checkState(self, plan):
-		if self.rounds <= 25:
+		if self.rounds <= 1:
 			self.drawing.clockPlan(self.getEmptyPlan())
 			self.resetState()
 			self.nextModeCallback()
@@ -47,7 +47,6 @@ class PendulumEffect(Effect):
 		elif self.direction == -1:
 			self.direction = 1
 		
-		self.color = [random.randint(0,255), random.randint(0,255), random.randint(0,255)]
 		self.activeLeds += Constants.ledsPerGlass
 		self.counter += (self.direction * Constants.ledsPerGlass)
 		

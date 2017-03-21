@@ -37,7 +37,7 @@ class Clock():
 		self.pendulumEffect = PendulumEffect(self.drawing, self.nextMode)
 		self.clockEffect = ClockEffect(self.drawing, self.nextMode)
 		
-		self.mode = 0
+		self.mode = 5
 		self.showSingleEffect = False
 
 	'''
