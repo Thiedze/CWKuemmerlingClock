@@ -60,7 +60,7 @@ class AppearEffect(Effect):
 	Check the current state. Call nextModeCallback if last round reached and counter is greater glasses * leds per glass.
 	'''
 	def checkState(self):
-		if(self.rounds <= 1 and self.counter >= (Constants.glasses * Constants.ledsPerGlass)):
+		if(self.rounds <= 1 and self.counter >= (Constants.glasses * Constants.ledsPerGlass) + (self.maxColorValue / self.steps)):
 			self.resetState()
 			self.nextModeCallback()
 			

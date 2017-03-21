@@ -48,7 +48,7 @@ class ClockEffect(Effect):
 	'''
 	def addSecondObjects(self, currentTime, plan):
 		if currentTime.second == 0:
-			self.nextModeCallback(random.randint(0,4), True)
+			self.nextModeCallback(random.randint(0,5), True)
 		else:
 			for index in range(0, Constants.ledsPerGlass):
 				plan[(currentTime.second * Constants.ledsPerGlass) + index] = SecondObject(self.colorSeconds)

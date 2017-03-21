@@ -82,12 +82,6 @@ class CycleEffect(Effect):
 				clockObject.color = self.leftDirectionColor
 				clockObject.direction = 1
 				plan[clockObject.pos] = clockObject
-			'''if led == 8:
-				clockObject = ClockObject()
-				clockObject.pos = led + 1
-				clockObject.color = self.rightDirectionColor
-				clockObject.direction = 0
-				plan[clockObject.pos] = clockObject'''	
 		
 	'''
 	Show cylce effect
