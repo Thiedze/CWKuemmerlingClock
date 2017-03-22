@@ -30,9 +30,9 @@ class PendulumEffect(Effect):
 	'''
 	def checkState(self, plan):
 		if self.rounds <= 1:
-			self.drawing.clockPlan(self.getEmptyPlan())
 			self.resetState()
 			self.nextModeCallback()
+			return
 			
 		if (self.counter + self.activeLeds) >= (Constants.glasses * Constants.ledsPerGlass) or self.counter <= 0:			
 			self.changeDirection(plan)
@@ -53,7 +53,7 @@ class PendulumEffect(Effect):
 	'''
 	Init a new plan.
 	'''
-	def initPlan(self, plan):
+	def initPlan(self, plan):	
 		self.isPlanInit = True
 
 		for index in range(0, Constants.leds):
