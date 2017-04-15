@@ -10,6 +10,7 @@ from waiteffect import WaitEffect
 from appeareffect import AppearEffect
 from cycleeffect import CycleEffect
 from pendulumeffect import PendulumEffect
+from waveeffect import WaveEffect
 from clockeffect import ClockEffect
 
 '''
@@ -35,6 +36,7 @@ class Clock():
 		self.appearEffect = AppearEffect(self.drawing, self.nextMode)
 		self.cycleEffect = CycleEffect(self.drawing, self.nextMode)
 		self.pendulumEffect = PendulumEffect(self.drawing, self.nextMode)
+		self.waveEffect = WaveEffect(self.drawing, self.nextMode)
 		self.clockEffect = ClockEffect(self.drawing, self.nextMode)
 		
 		self.mode = 0
@@ -114,7 +116,8 @@ class Clock():
 			self.startTimer(0.25, self.clockEffect.show)
 
 		'''
-		
+		elif(self.mode == 6):
+			self.startTimer(0.05, self.waveEffect.show)
 		'''
 		
 		if self.showSingleEffect == False:

@@ -16,7 +16,7 @@ class ClockEffect(Effect):
 		Effect.__init__(self, drawing, nextModeCallback)
 		self.colorSeconds = [0, 0, 50]
 		self.colorMinutes = [50, 0, 0]
-		self.colorHours = [0, 50, 0]
+		self.colorHours = [0, 255, 0]
 
 	'''
 	Set the color of the seconds.
@@ -47,7 +47,7 @@ class ClockEffect(Effect):
 	Add second objects depending on the current time. 
 	'''
 	def addSecondObjects(self, currentTime, plan):
-		if currentTime.second == 0:
+		if currentTime.second % 5 == 0:
 			self.nextModeCallback(random.randint(0,5), True)
 		else:
 			for index in range(0, Constants.ledsPerGlass):

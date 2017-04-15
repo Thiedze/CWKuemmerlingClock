@@ -2,7 +2,6 @@ from effect import Effect
 from constants import Constants
 from clockobject import ClockObject
 import random
-import copy
 
 '''
 The pendulum effect class.
