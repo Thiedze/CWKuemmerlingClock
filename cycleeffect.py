@@ -102,7 +102,7 @@ class CycleEffect(Effect):
 						clockObject.pos = clockObject.pos + 1
 					else:
 						clockObject.pos = clockObject.pos + 3
-					if clockObject.pos > Constants.glasses * Constants.ledsPerGlass:
+					if clockObject.pos >= Constants.glasses * Constants.ledsPerGlass:
 						clockObject.pos = clockObject.pos - Constants.glasses * Constants.ledsPerGlass
 				elif clockObject.direction == 1:
 					clockObject.color = self.leftDirectionColor

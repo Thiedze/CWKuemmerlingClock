@@ -36,7 +36,7 @@ class RunningLightEfect(Effect):
 		if(self.state == 0 and self.counter >= Constants.glasses):
 			self.counter = 0
 			self.state += 1
-		elif(self.state == 1 and self.counter > Constants.glasses):
+		elif(self.state == 1 and self.counter >= Constants.glasses):
 			self.counter = 0
 			self.state += 1
 		elif(self.state == 2 and self.counter >= Constants.glasses):

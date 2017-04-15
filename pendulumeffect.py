@@ -28,12 +28,10 @@ class PendulumEffect(Effect):
 	Check the state. If rounds <= 25 call nextModeCallback.
 	'''
 	def checkState(self, plan):
-		if self.rounds <= 1:
+		if self.rounds <= 3:
 			self.resetState()
 			self.nextModeCallback()
-			return
-			
-		if (self.counter + self.activeLeds) >= (Constants.glasses * Constants.ledsPerGlass) or self.counter <= 0:			
+		elif (self.counter + self.activeLeds) >= (Constants.glasses * Constants.ledsPerGlass) or self.counter <= 0:			
 			self.changeDirection(plan)
 			self.rounds -= 1
 
