@@ -39,7 +39,7 @@ class Clock():
 		self.waveEffect = WaveEffect(self.drawing, self.nextMode)
 		self.clockEffect = ClockEffect(self.drawing, self.nextMode)
 		
-		self.mode = 5
+		self.mode = 0
 		self.showSingleEffect = False
 
 	'''
