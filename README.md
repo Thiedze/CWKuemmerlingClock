@@ -1,7 +1,7 @@
 # CWKuemmerlingClock
 Kuemmerling clock with ws2812 LEDs
 
-# Install neopixel
+## Install neopixel
 sudo apt-get update
 sudo apt-get install build-essential python-dev git scons swig
 
@@ -12,8 +12,7 @@ scons
 cd python
 sudo python setup.py install
 
-# Disable Audio Device
-
+## Disable Audio Device
 cd /etc/modprobe.d
 sudo nano alsa-blacklist.conf
 
