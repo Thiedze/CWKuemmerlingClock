@@ -11,3 +11,13 @@ scons
 
 cd python
 sudo python setup.py install
+
+# Disable Audio Device
+
+cd /etc/modprobe.d
+sudo nano alsa-blacklist.conf
+
+add blacklist snd_bcm2835 to the file.
+save it
+
+sudo reboot
