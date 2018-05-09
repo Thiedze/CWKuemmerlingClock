@@ -12,6 +12,7 @@ from cycleeffect import CycleEffect
 from pendulumeffect import PendulumEffect
 from waveeffect import WaveEffect
 from clockeffect import ClockEffect
+from debugeffect import DebugEffect
 
 '''
 The clock class. This is the main class to control the effects. 
@@ -38,6 +39,7 @@ class Clock():
 		self.pendulumEffect = PendulumEffect(self.drawing, self.nextMode)
 		self.waveEffect = WaveEffect(self.drawing, self.nextMode)
 		self.clockEffect = ClockEffect(self.drawing, self.nextMode)
+		self.debugEffect = DebugEffect(self.drawing, self.nextMode)
 		
 		self.mode = 0
 		self.showSingleEffect = False
@@ -99,7 +101,9 @@ class Clock():
 		
 		if showSingleEffect != None:
 			self.showSingleEffect = showSingleEffect
-	
+
+		#self.startTimer(0.02, self.debugEffect.show)
+		
 		if(self.mode == 0):
 			self.startTimer(0.02, self.runningLightEffect.show)
 		elif(self.mode == 1):
